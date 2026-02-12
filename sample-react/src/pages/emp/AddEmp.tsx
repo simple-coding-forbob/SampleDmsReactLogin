@@ -36,7 +36,6 @@ function AddEmp() {
       <h1 className="text-2xl font-bold mb-6 text-center">직원 추가</h1>
 
       <form onSubmit={formik.handleSubmit} className="space-y-4">
-        {/* 이름 */}
         <div>
           <label htmlFor="ename" className="mb-1">
             이름
@@ -56,7 +55,6 @@ function AddEmp() {
           )}
         </div>
 
-        {/* 직무 */}
         <div>
           <label htmlFor="job" className="mb-1">
             직무
@@ -76,7 +74,6 @@ function AddEmp() {
           )}
         </div>
 
-        {/* 매니저 */}
         <div>
           <label htmlFor="manager" className="mb-1">
             매니저
@@ -96,7 +93,6 @@ function AddEmp() {
           )}
         </div>
 
-        {/* 입사일 */}
         <div>
           <label htmlFor="hiredate" className="mb-1">
             입사일
@@ -115,7 +111,6 @@ function AddEmp() {
           )}
         </div>
 
-        {/* 연봉 */}
         <div>
           <label htmlFor="salary" className="mb-1">
             연봉
@@ -135,7 +130,6 @@ function AddEmp() {
           )}
         </div>
 
-        {/* 커미션 */}
         <div>
           <label htmlFor="commission" className="mb-1">
             커미션
@@ -155,7 +149,6 @@ function AddEmp() {
           )}
         </div>
 
-        {/* 부서 번호 */}
         <div>
           <label htmlFor="dno" className="mb-1">
             부서 번호
@@ -175,7 +168,6 @@ function AddEmp() {
           )}
         </div>
 
-        {/* Submit 버튼 */}
         <button
           type="submit"
           className="w-full bg-blue-700 text-white p-2 rounded hover:bg-blue-800"

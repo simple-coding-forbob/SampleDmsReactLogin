@@ -15,10 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-//                아래 url 허용
-//          사용법 : .allowedOrigins("http://허용할IP:허용할Port", ...)
+
                 .allowedOrigins(reactIp)
-//                Todo: 아래 추가해야 update, delete, insert, select 가 cors 문제가 안생김
                 .allowedMethods(
                         HttpMethod.GET.name(),
                         HttpMethod.POST.name(),

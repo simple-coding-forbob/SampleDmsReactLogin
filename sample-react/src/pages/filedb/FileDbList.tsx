@@ -12,20 +12,17 @@ const FiledbList = () => {
 
   const [page, setPage] = useState<number>(1);
   const [totalNumber, setTotalNumber] = useState<number>(0);
-  const pageSize = 3; // 고정 페이지 사이즈
+  const pageSize = 3; 
 
-  // 페이지 변경
   const handlePageChange = (page: number) => {
     setPage(page);
   };
 
-  // 검색어 입력
   const onChangeSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
     setPage(1);
   };
 
-  // 전체 조회
   const selectList = async () => {
     const response = await FileDbService.getAll(
       searchKeyword,
@@ -37,7 +34,6 @@ const FiledbList = () => {
     setTotalNumber(totalNumber); // rc-pagination total은 전체 아이템 수
   };
 
-  // 삭제
   const remove = async (uuid: number) => {
     await FileDbService.remove(uuid);
     alert(messages.delete);
@@ -53,7 +49,6 @@ const FiledbList = () => {
       <Meta name="description" content="FileDb 조회 페이지입니다." />
       <h1 className="text-2xl font-bold mb-4">FileDb 조회</h1>
 
-      {/* 검색 */}
       <div className="flex mb-4">
         <input
           type="text"
@@ -70,7 +65,6 @@ const FiledbList = () => {
         </button>
       </div>
 
-      {/* 카드 리스트 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {fileDbs.map((data) => (
           <div
@@ -99,7 +93,6 @@ const FiledbList = () => {
         ))}
       </div>
 
-      {/* 페이지네이션 */}
       <div className="flex justify-center mt-6">
         <Pagination
           current={page}

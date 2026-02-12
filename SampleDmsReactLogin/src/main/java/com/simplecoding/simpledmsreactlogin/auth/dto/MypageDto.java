@@ -9,5 +9,5 @@ import lombok.*;
 @ToString
 public class MypageDto {
     private String email;
-    private String name;     // 유저명
+    private String name;
 }

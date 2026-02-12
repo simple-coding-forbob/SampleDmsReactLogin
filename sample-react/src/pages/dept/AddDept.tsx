@@ -32,7 +32,6 @@ function AddDept() {
       <h1 className="text-2xl font-bold mb-6">부서 추가</h1>
 
       <form onSubmit={formik.handleSubmit}>
-        {/* dname 입력 */}
         <div className="mb-4">
           <label htmlFor="dname" className="block mb-1">
             dname
@@ -52,7 +51,6 @@ function AddDept() {
           )} 
         </div>
 
-        {/* loc 입력 */}
         <div className="mb-4">
           <label htmlFor="loc" className="block mb-1">
             loc
@@ -72,7 +70,6 @@ function AddDept() {
           )}
         </div>
 
-        {/* 버튼 */}
         <button
           type="submit"
           className="w-full bg-blue-700 text-white p-2 rounded hover:bg-blue-800"

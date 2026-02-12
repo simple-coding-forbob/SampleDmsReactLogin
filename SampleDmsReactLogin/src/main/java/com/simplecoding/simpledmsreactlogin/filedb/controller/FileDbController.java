@@ -31,13 +31,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "FileDbController", description = "FileDb REST API")
-@RequestMapping("/api") // 공통 URL
+@RequestMapping("/api")
 public class FileDbController {
 
     private final FileDbService fileDbService;
     private final CommonUtil commonUtil;
 
-    // 전체 조회 + 페이징
     @Operation(summary = "FileDb 전체 조회", description = "검색 키워드로 FileDb 목록을 조회합니다.")
         @GetMapping("/fileDb")
     public ResponseEntity<ApiResponse<List<FileDbDto>>> selectFileDbList(
@@ -55,7 +54,6 @@ public class FileDbController {
         return ResponseEntity.ok(response);
     }
 
-    // 추가 (CUD는 Void)
     @Operation(summary = "FileDb 등록", description = "새로운 FileDb를 등록합니다.")
     @PostMapping("/fileDb")
     public ResponseEntity<Void> create(
@@ -67,7 +65,6 @@ public class FileDbController {
         return ResponseEntity.ok().build();
     }
 
-    // 삭제
     @Operation(summary = "FileDb 삭제", description = "UUID로 삭제합니다.")
     @DeleteMapping("/fileDb/{uuid}")
     public ResponseEntity<Void> delete(@PathVariable String uuid) {
@@ -79,12 +76,11 @@ public class FileDbController {
     @GetMapping("/download/fileDb/{uuid}")
     public ResponseEntity<byte[]> fileDownload(@PathVariable String uuid) throws Exception {
         FileDb fileDb = fileDbService.findById(uuid);
-        // 서버에 저장된 실제 파일 경로
+
         byte[] file= commonUtil.readFile(uuid);
 
-        // ContentDisposition 사용 (브라우저 호환성 보장)
         ContentDisposition contentDisposition = ContentDisposition.attachment()
-                .filename(fileDb.getUuid(), StandardCharsets.UTF_8) // 실제 업로드한 파일명
+                .filename(fileDb.getUuid(), StandardCharsets.UTF_8)
                 .build();
 
         return ResponseEntity.ok()

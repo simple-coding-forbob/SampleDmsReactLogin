@@ -14,7 +14,6 @@ function DeptDetail() {
 
   const [dept, setDept] = useState<IDept | null>(null); // null로 초기화 -> 로딩 상태 판단
 
-  // 상세조회
   useEffect(() => {
     if (dno) get(dno);
   }, [dno]);
@@ -22,38 +21,35 @@ function DeptDetail() {
   const get = async (dno: number) => {
     const response = await DeptService.get(dno);
     const { result } = response.data;
-    setDept(result); // 서버 데이터 저장
+    setDept(result); 
     console.log(result);
   };
 
-  // 수정
   const update = async (data: IDept) => {
     await DeptService.update(dno, data);
     alert("수정되었습니다");
     nav("/dept");
   };
 
-  // 삭제
   const remove = async () => {
     await DeptService.remove(dno);
     alert("삭제되었습니다");
     nav("/dept");
   };
 
-  // 서버 데이터가 준비되었을 때만 Formik 초기화
   const formik = useFormik({
     initialValues: {
       dname: dept?.dname ?? "",
       loc: dept?.loc ?? "",
     },
-    enableReinitialize: true, // 값이 바뀌면 재갱신: 최초 null -> 서버데이터
+    enableReinitialize: true, 
     validationSchema: deptValidation,
     onSubmit: (data: IDept) => {
       update(data);
     },
   });
 
-  if (!dept) return <div>로딩중...</div>; // 데이터 로딩 중 표시
+  if (!dept) return <div>로딩중...</div>; 
 
   return (
     <>

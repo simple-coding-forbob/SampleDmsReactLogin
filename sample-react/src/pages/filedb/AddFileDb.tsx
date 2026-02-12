@@ -14,7 +14,7 @@ function AddFileDb() {
   const insert = async (data: IFileDb) => {
     await FileDbService.insert(data);
     alert(messages.save);
-    nav("/fileDb"); // 업로드 성공 시 강제 이동
+    nav("/fileDb"); 
   };
 
   const formik = useFormik({
@@ -40,7 +40,6 @@ function AddFileDb() {
       <h1 className="text-2xl font-bold mb-6">이미지 업로드</h1>
 
       <form onSubmit={formik.handleSubmit}>
-        {/* 이미지명 */}
         <div className="mb-4">
           <label htmlFor="fileTitle" className="block mb-1">
             이미지명
@@ -60,7 +59,6 @@ function AddFileDb() {
           )}
         </div>
 
-        {/* 이미지내용 */}
         <div className="mb-4">
           <label htmlFor="fileContent" className="block mb-1">
             내용
@@ -80,7 +78,6 @@ function AddFileDb() {
           )}
         </div>
 
-        {/* 파일 선택 */}
         <div className="mb-4">
           <label className="block mb-1">파일 선택</label>
           <div className="flex items-center gap-2">
@@ -100,7 +97,6 @@ function AddFileDb() {
           )}
         </div>
 
-        {/* 버튼 */}
         <button
           type="submit"
           className="w-full bg-blue-700 text-white p-2 rounded hover:bg-blue-800"

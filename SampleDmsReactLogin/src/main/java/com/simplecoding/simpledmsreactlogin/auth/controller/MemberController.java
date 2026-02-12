@@ -18,8 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-// swagger 주소:
-
 @Log4j2
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +29,6 @@ public class MemberController {
     private final JwtUtils jwtUtils;
     private final CommonUtil commonUtil;
 
-    //    로그인 함수
     @Operation(summary = "로그인", description = "회원이 로그인합니다.")
     @PostMapping("/auth/login")
     public ResponseEntity<JwtDto> login(
@@ -51,10 +48,9 @@ public class MemberController {
     @Operation(summary = "마이페이지", description = "마이 페이지입니다.")
     @GetMapping("/mypage")
     public ResponseEntity<ApiResponse<MypageDto>> getMypage (@Parameter(description = "웹토큰") HttpServletRequest request) {
-        String jwt = jwtUtils.parseJwt(request);            // 1. "Bearer [JWT]"에서 토큰만 추출
-        String email = jwtUtils.getUserNameFromJwt(jwt);    // 2. JWT 검증 및 Payload에서 이메일 추출
+        String jwt = jwtUtils.parseJwt(request);
+        String email = jwtUtils.getUserNameFromJwt(jwt);
 
-        // 3. DB에서 사용자 정보 조회
         MypageDto mypageDto = memberService.findById(email);
         ApiResponse<MypageDto> response = new ApiResponse<>(true, "조회 성공", mypageDto, 0, 0);
 

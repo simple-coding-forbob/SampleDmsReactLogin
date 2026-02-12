@@ -19,41 +19,37 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FileDbService {
 
-    private final FileDbRepository fileDbRepository; // JPA DB 객체
+    private final FileDbRepository fileDbRepository;
     private final MapStruct mapStruct;
     private final CommonUtil commonUtil;
 
-    //    like 검색 + 전체조회 + 페이징처리
     public Page<FileDbDto> selectFileDbList(String searchKeyword, Pageable pageable) {
         Page<FileDbDto> page= fileDbRepository.selectFileDbList(searchKeyword, pageable);
         return page;
     }
 
-    //    TODO: 저장: save
     public void save(FileDbDto fileDbDto) throws Exception {
         FileDb fileDb=mapStruct.toEntity(fileDbDto);
 
-        String uuid=UUID.randomUUID().toString();                           // 1) UUID 만들기(기본키): 자바에서 중복안되게 만들어주는 글자(랜덤)
+        String uuid=UUID.randomUUID().toString();
         fileDb.setUuid(uuid);
 
         if(fileDbDto.getFileData()!=null) {
-            String downloadURL=commonUtil.generateUrl("fileDb", uuid);  // 2) 업로드 파일이 있을때만 다운로드 URL 만들기
+            String downloadURL=commonUtil.generateUrl("fileDb", uuid);
             fileDb.setFileUrl(downloadURL);
-            commonUtil.saveFile(fileDbDto.getFileData(), uuid);              // 3) 업로드 파일이 있을때만 파일 만들기
+            commonUtil.saveFile(fileDbDto.getFileData(), uuid);
         }
 
-        fileDbRepository.save(fileDb);                                        // 4) DB insert(fileDbVO)
+        fileDbRepository.save(fileDb);
     }
 
-    //    상세조회
     public FileDb findById(String uuid) {
         return fileDbRepository.findById(uuid)
                 .orElseThrow(() -> new RuntimeException(commonUtil.getMessage("errors.not.found")));
     }
 
-    //    삭제 함수
     public void deleteById(String uuid) {
-        commonUtil.deleteFile(uuid);                       // 1) 업로드 폴더에 파일 삭제하기
+        commonUtil.deleteFile(uuid);
         fileDbRepository.deleteById(uuid);
     }
 }

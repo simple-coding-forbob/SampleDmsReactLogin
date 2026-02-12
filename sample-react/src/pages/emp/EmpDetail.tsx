@@ -14,7 +14,6 @@ function EmpDetail() {
 
   const [emp, setEmp] = useState<IEmp | null>(null);
 
-  // 상세조회
   useEffect(() => {
     if (eno) get(eno);
   }, [eno]);
@@ -26,14 +25,12 @@ function EmpDetail() {
     console.log(result);
   };
 
-  // 수정
   const update = async (data: IEmp) => {
     await EmpService.update(eno, data);
     alert("수정되었습니다");
     nav("/emp");
   };
 
-  // 삭제
   const remove = async () => {
     await EmpService.remove(eno);
     alert("삭제되었습니다");
@@ -50,7 +47,7 @@ function EmpDetail() {
       commission: emp?.commission ?? "",
       dno: emp?.dno ?? "",
     },
-    enableReinitialize: true, // 값이 바뀌면 재갱신: 최초 null -> 서버데이터
+    enableReinitialize: true, 
     validationSchema: empValidation,
     onSubmit: (data: IEmp) => {
       update(data);
@@ -65,7 +62,6 @@ function EmpDetail() {
       <h1 className="text-2xl font-bold mb-6">사원 상세조회</h1>
 
       <form onSubmit={formik.handleSubmit}>
-        {/* ename */}
         <div className="mb-4">
           <label htmlFor="ename" className="block mb-1">
             ename
@@ -84,7 +80,6 @@ function EmpDetail() {
           )}
         </div>
 
-        {/* job */}
         <div className="mb-4">
           <label htmlFor="job" className="block mb-1">
             job
@@ -103,7 +98,6 @@ function EmpDetail() {
           )}
         </div>
 
-        {/* manager */}
         <div className="mb-4">
           <label htmlFor="manager" className="block mb-1">
             manager
@@ -119,7 +113,6 @@ function EmpDetail() {
           />
         </div>
 
-        {/* hiredate */}
         <div className="mb-4">
           <label htmlFor="hiredate" className="block mb-1">
             hiredate
@@ -135,7 +128,6 @@ function EmpDetail() {
           />
         </div>
 
-        {/* salary */}
         <div className="mb-4">
           <label htmlFor="salary" className="block mb-1">
             salary
@@ -151,7 +143,6 @@ function EmpDetail() {
           />
         </div>
 
-        {/* commission */}
         <div className="mb-4">
           <label htmlFor="commission" className="block mb-1">
             commission
@@ -167,7 +158,6 @@ function EmpDetail() {
           />
         </div>
 
-        {/* dno */}
         <div className="mb-4">
           <label htmlFor="dno" className="block mb-1">
             dno
@@ -183,7 +173,6 @@ function EmpDetail() {
           />
         </div>
 
-        {/* 버튼 */}
         <div className="mb-4 flex gap-2">
           <button
             type="submit"

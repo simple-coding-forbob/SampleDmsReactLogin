@@ -7,7 +7,7 @@ function Mypage() {
 
   useEffect(()=>{
     get()
-  }, [])               // 화면 뜰 때 한 번만 호출
+  }, [])               
 
   const get = async () => {
     const response= await AuthService.mypage()

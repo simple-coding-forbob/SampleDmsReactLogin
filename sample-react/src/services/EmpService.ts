@@ -1,5 +1,4 @@
-﻿// axios 공통함수 : 벡엔드 연동
-
+﻿
 import axiosInstance from "../common/axiosInstance";
 import type { IEmp } from "../types/IEmp";
 

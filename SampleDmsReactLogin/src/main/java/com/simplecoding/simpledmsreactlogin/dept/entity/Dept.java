@@ -21,7 +21,7 @@ import lombok.*;
 public class Dept extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_DEPT_JPA")
-    private Long dno; // 부서번호(PK)
-    private String dname; // 부서명
-    private String loc; // 부서위치
+    private Long dno;
+    private String dname;
+    private String loc;
 }

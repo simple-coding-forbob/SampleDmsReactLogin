@@ -17,8 +17,8 @@ public class Member extends BaseTimeEntity {
     @Id
     private String email;
     private String password;
-    private String name;     // 유저명
-    private String codeName="ROLE_USER"; // 권한명 ( ROLE_USER, ROLE_ADMIN )
+    private String name;
+    private String codeName="ROLE_USER";
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "eno")
     private Emp emp;

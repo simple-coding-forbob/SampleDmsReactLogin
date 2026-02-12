@@ -9,9 +9,9 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class DeptDto {
-    private Long dno;   // 부서번호(기본키)
+    private Long dno;
     @NotBlank
-    private String  dname; // 부서명
+    private String  dname;
     @NotBlank
-    private String  loc;   // 부서위치
+    private String  loc;
 }

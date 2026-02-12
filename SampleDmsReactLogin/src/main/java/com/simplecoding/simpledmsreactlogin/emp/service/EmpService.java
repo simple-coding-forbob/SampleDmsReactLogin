@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class EmpService {
 
-    //    DB CRUD 클래스 받기 : JPA 제공 함수 사용 가능
     private final EmpRepository empRepository;
     private final MapStruct mapStruct;
     private final CommonUtil commonUtil;
@@ -26,17 +25,12 @@ public class EmpService {
         return page;
     }
 
-    //    저장/수정 : 1) 기본키가(부서번호) 없으면 저장(insert)
-//               2) 기본키가(부서번호) 있으면 수정(update)
-//           => JPA 내부적으로 if문 있음 : 알아서 실행됨
     public void save(EmpDto empDto) {
-//        JPA 저장 함수 실행 : return 값 : 저장된 객체
         Emp emp=mapStruct.toEntity(empDto);
         empRepository.save(emp);
     }
 
     public EmpDto findById(long eno) {
-//        JPA 상세조회 함수 실행
         Emp emp= empRepository.findById(eno)
                 .orElseThrow(() -> new RuntimeException(commonUtil.getMessage("errors.not.found")));
         return mapStruct.toDto(emp);
@@ -45,14 +39,12 @@ public class EmpService {
 
     @Transactional
     public void updateFromDto(EmpDto empDto) {
-//        JPA 저장 함수 실행 : return 값 : 저장된 객체
         Emp emp=empRepository.findById(empDto.getEno())
                 .orElseThrow(() -> new RuntimeException("errors.not.found"));
 
         mapStruct.updateFromDto(empDto, emp);
     }
 
-    //    삭제 함수
     public void deleteById(long eno) {
         empRepository.deleteById(eno);
     }

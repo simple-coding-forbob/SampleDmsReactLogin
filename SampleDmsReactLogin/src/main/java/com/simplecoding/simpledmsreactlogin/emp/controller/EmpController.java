@@ -29,7 +29,6 @@ public class EmpController {
 	private final EmpService empService;
     private final CommonUtil commonUtil;
 
-	// 전체 조회
 	@Operation(summary = "사원 전체 조회", description = "검색 키워드로 사원 목록을 조회합니다.")
 	@GetMapping("/emp")
 	public ResponseEntity<ApiResponse<List<EmpDto>>> selectEmpList(
@@ -48,7 +47,6 @@ public class EmpController {
 		return ResponseEntity.ok(response);
 	}
 
-	// 저장
 	@Operation(summary = "사원 저장", description = "새로운 사원을 등록합니다.")
 	@PostMapping("/emp")
 	public ResponseEntity<Void> create(@Valid @RequestBody EmpDto empDto, BindingResult result) {
@@ -57,7 +55,6 @@ public class EmpController {
 		return ResponseEntity.ok().build();
 	}
 
-	// 수정
 	@Operation(summary = "사원 수정", description = "사원을 수정합니다.")
 	@PutMapping("/emp/{eno}")
 	public ResponseEntity<Void> update(
@@ -69,7 +66,6 @@ public class EmpController {
 		return ResponseEntity.ok().build();
 	}
 
-	// 상세조회
 	@Operation(summary = "사원 상세 조회", description = "사원 번호로 상세 정보를 조회합니다.")
 	@GetMapping("/emp/{eno}")
 	public ResponseEntity<ApiResponse<EmpDto>> findById(
@@ -80,7 +76,6 @@ public class EmpController {
 		return ResponseEntity.ok(response);
 	}
 
-	// 삭제
 	@Operation(summary = "사원 삭제", description = "사원 번호로 삭제합니다.")
 	@DeleteMapping("/emp/{eno}")
 	public ResponseEntity<Void> delete(@PathVariable long eno) {

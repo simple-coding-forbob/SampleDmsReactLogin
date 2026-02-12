@@ -1,4 +1,4 @@
-// src/pages/auth/RegisterView.tsx
+
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -26,7 +26,6 @@ export default function RegisterView() {
     <div className="flex items-center justify-center">
       <Meta name="description" content="회원가입 페이지입니다." />
       <div className="w-full max-w-5xl rounded-lg flex">
-        {/* 이미지 영역 */}
         <div className="hidden lg:flex lg:w-1/2  items-center justify-center">
           <img
             src={registerImg}
@@ -36,12 +35,10 @@ export default function RegisterView() {
           />
         </div>
 
-        {/* 폼 영역 */}
         <div className="w-full lg:w-1/2 p-8">
           <h3 className="text-4xl font-bold mb-6 text-center">회원 가입</h3>
 
           <form onSubmit={formik.handleSubmit} className="space-y-4">
-            {/* 이메일 */}
             <div>
               <label htmlFor="email" className="block mb-1 font-bold">
                 이메일
@@ -63,7 +60,6 @@ export default function RegisterView() {
               )}
             </div>
 
-            {/* 비밀번호 */}
             <div>
               <label htmlFor="password" className="block mb-1 font-bold">
                 비밀번호
@@ -85,7 +81,6 @@ export default function RegisterView() {
               )}
             </div>
 
-            {/* 비밀번호 확인 */}
             <div>
               <label htmlFor="repassword" className="block mb-1 font-bold">
                 비밀번호 확인
@@ -107,7 +102,6 @@ export default function RegisterView() {
               )}
             </div>
 
-            {/* 이름 */}
             <div>
               <label htmlFor="name" className="block mb-1 font-bold">
                 이름
@@ -129,7 +123,6 @@ export default function RegisterView() {
               )}
             </div>
 
-            {/* eno */}
             <div>
               <label htmlFor="eno" className="block mb-1 font-bold">
                 사원번호

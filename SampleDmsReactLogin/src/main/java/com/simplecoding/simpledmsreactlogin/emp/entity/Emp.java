@@ -24,16 +24,16 @@ import java.time.LocalDate;
 public class Emp extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_EMP_JPA")
-    private Long eno; // 사원번호(PK, 시퀀스)
-    private String ename; // 사원명
-    private String job; // 직위
-    private Long manager; // 관리자 사원번호
+    private Long eno;
+    private String ename;
+    private String job;
+    private Long manager;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate hiredate; // 입사일
-    private Long salary; // 급여
-    private Long commission; // 보너스(상여금)
+    private LocalDate hiredate;
+    private Long salary;
+    private Long commission;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dno") // FK: TB_DEPT(DNO)
-    private Dept dept; // 부모 엔티티
+    @JoinColumn(name = "dno")
+    private Dept dept;
 }
