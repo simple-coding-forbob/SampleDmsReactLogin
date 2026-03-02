@@ -1,6 +1,5 @@
 package com.simplecoding.simpledmsreactlogin.auth.service;
 
-import com.simplecoding.simpledmsreactlogin.auth.dto.JwtDto;
 import com.simplecoding.simpledmsreactlogin.auth.dto.MemberDto;
 import com.simplecoding.simpledmsreactlogin.auth.dto.MypageDto;
 import lombok.extern.log4j.Log4j2;

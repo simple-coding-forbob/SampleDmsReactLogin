@@ -1,6 +1,5 @@
-
+// src/pages/auth/LoginView.tsx
 import { useFormik } from "formik";
-import { useEffect } from "react";
 import { Meta } from "react-head";
 import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/puppy-1920_1280.webp";
@@ -10,17 +9,13 @@ import type { IAuth } from "../../types/auth/IAuth";
 import authValidation from "../../validation/authValidation"; // Yup 스키마
 
 function LoginView() {
-  const { loggedIn, login } = useAuthStore();
+  const { login } = useAuthStore();
   const nav = useNavigate();
-
-  useEffect(() => {
-    if (loggedIn) nav("/mypage");
-  }, [loggedIn, nav]);
 
   const handleLogin = async (data: IAuth) => {
     const response = await AuthService.login(data);
     console.log(response.data);
-    login(response.data); 
+    login(); // Context 상태 업데이트
     nav("/mypage");
   };
 
@@ -34,6 +29,7 @@ function LoginView() {
     <div className="flex items-center justify-center">
       <Meta name="description" content="로그인 페이지입니다." />
       <div className="w-full max-w-5xl rounded-lg flex">
+        {/* 이미지 영역 */}
         <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
           <img
             src={loginImg}
@@ -43,10 +39,12 @@ function LoginView() {
           />
         </div>
 
+        {/* 로그인 폼 영역 */}
         <div className="w-full lg:w-1/2 p-8">
           <h3 className="text-4xl font-bold mb-6 text-center">simple-coding</h3>
 
           <form onSubmit={formik.handleSubmit} className="space-y-4">
+            {/* 이메일 */}
             <div>
               <label htmlFor="email" className="block mb-1 font-medium">
                 이메일
@@ -68,6 +66,7 @@ function LoginView() {
               )}
             </div>
 
+            {/* 비밀번호 */}
             <div>
               <label htmlFor="password" className="block mb-1 font-medium">
                 비밀번호
@@ -89,6 +88,7 @@ function LoginView() {
               )}
             </div>
 
+            {/* 로그인 버튼 */}
             <button
               type="submit"
               className="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition"

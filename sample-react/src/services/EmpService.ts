@@ -1,27 +1,27 @@
 ﻿
-import axiosInstance from "../common/axiosInstance";
+import common from "../common/CommonService";
 import type { IEmp } from "../types/IEmp";
 
 const getAll = (searchKeyword: string, page: number, size: number) => {
-  return axiosInstance.get("/emp", {
+  return common.get("/emp", {
     params: { searchKeyword, page, size },
   });
 };
 
 const get = (eno: number) => {
-  return axiosInstance.get(`/emp/${eno}`);
+  return common.get(`/emp/${eno}`);
 };
 
 const insert = (data: IEmp) => {
-  return axiosInstance.post("/emp", data);
+  return common.post("/emp", data);
 };
 
 const update = (eno: number, data: IEmp) => {
-  return axiosInstance.put(`/emp/${eno}`, data);
+  return common.put(`/emp/${eno}`, data);
 };
 
 const remove = (eno: number) => {
-  return axiosInstance.delete(`/emp/${eno}`);
+  return common.delete(`/emp/${eno}`);
 };
 
 const EmpService = {

@@ -1,15 +1,14 @@
-
-import axiosInstance from "../common/axiosInstance";
+import common from "../common/CommonService";
 import type { IFileDb } from "../types/IFileDb";
 
 const getAll = (searchKeyword: string, page: number, size: number) => {
-  return axiosInstance.get("/fileDb", {
+  return common.get("/fileDb", {
     params: { searchKeyword, page, size },
   });
 };
 
 const remove = (uuid: number) => {
-  return axiosInstance.delete(`/fileDb/${uuid}`);
+  return common.delete(`/fileDb/${uuid}`);
 };
 
 const insert = (data: IFileDb) => {
@@ -20,7 +19,7 @@ const insert = (data: IFileDb) => {
     formData.append("fileData", data.fileData);
   }
 
-  return axiosInstance.post("/fileDb", formData, {
+  return common.post("/fileDb", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 };
