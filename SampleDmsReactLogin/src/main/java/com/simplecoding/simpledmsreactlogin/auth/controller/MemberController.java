@@ -74,9 +74,9 @@ public class MemberController {
     public ResponseEntity<Void> logout() {
         // 1) 쿠키를 비우고 바로 만료 처리
         ResponseCookie cookie = ResponseCookie.from("jwt", "")
-                .httpOnly(true)   // JS 접근 불가
-                .path("/")        // 전체 도메인 적용
-                .maxAge(0)        // 즉시 만료(로그아웃)
+                .httpOnly(true)           // JS 접근 불가
+                .path("/")                // 전체 도메인 적용
+                .maxAge(0)   // 즉시 만료(로그아웃)
                 .build();
 
         // 2) 응답 헤더에 쿠키 추가
@@ -86,8 +86,8 @@ public class MemberController {
     }
 
     @Operation(summary = "로그인 상태 확인", description = "현재 로그인 상태를 확인합니다.")
-    @GetMapping("/auth/me")
-    public ResponseEntity<ApiResponse<Void>> me() {
+    @GetMapping("/me")
+    public ResponseEntity<Void> me() {
         // AuthTokenFilter에서 인증 성공 → SecurityContext에 인증 정보 있음
         log.info("성공");
         return ResponseEntity.ok().build();

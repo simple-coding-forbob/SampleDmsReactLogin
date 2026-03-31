@@ -13,13 +13,14 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode(of = "email", callSuper = false)
 public class Member extends BaseTimeEntity {
     @Id
     private String email;
     private String password;
     private String name;
     private String codeName="ROLE_USER";
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "eno")
     private Emp emp;
 }

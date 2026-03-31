@@ -20,7 +20,7 @@ const logout = () => {
 };
 
 const me = () => {
-  return common.get("/auth/me");
+  return common.get("/me");
 };
 
 const AuthService = {

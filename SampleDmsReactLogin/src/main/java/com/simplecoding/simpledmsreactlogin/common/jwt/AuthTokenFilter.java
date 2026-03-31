@@ -29,7 +29,7 @@ import java.util.Optional;
 public class AuthTokenFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JwtUtils jwtUtils; // JWT 처리 유틸리티
+    private JwtUtils jwtUtils;                         // JWT 처리 유틸리티
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService; // DB에서 사용자 상세조회용 서비스
@@ -43,39 +43,23 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         try {
-            // 1) 요청 헤더의 쿠키에서 jwt 추출
             Optional<String> jwt = jwtUtils.getJwtFromCookies(request);
-
-            // 2) JWT가 존재하고 유효하면
             if (jwt.isPresent() && jwtUtils.validateJwtToken(jwt.get())) {
-
-                // 3) JWT에서 사용자 이메일 추출
                 String email = jwtUtils.getUserNameFromJwt(jwt.get());
-
-                // 4) DB에서 사용자 상세 정보 조회
                 UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-
-                // 5) 인증 객체 생성 (Spring Security용)
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
-                                userDetails, // principal
-                                null, // credentials (비밀번호는 사용하지 않음)
-                                userDetails.getAuthorities() // 권한
+                                userDetails,
+                                null,
+                                userDetails.getAuthorities()
                         );
-
-                // 6) 인증 객체에 요청 정보 세팅
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                // 7) SecurityContext에 인증 정보 저장 → 스프링 시큐리티가 인증 완료로 판단
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
-            // 예외 발생 시 인증 컨텍스트 초기화
             SecurityContextHolder.clearContext();
             log.error("JWT 인증 처리 중 오류 발생: ", e);
         }
-
-        // 8) 다음 필터로 요청 전달
         filterChain.doFilter(request, response);
     }
 }

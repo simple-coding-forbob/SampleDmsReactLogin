@@ -17,12 +17,13 @@ common.interceptors.response.use(
   (response) => response,
   (error) => {
     const status = error.response?.status;
-    if (status && status !== 401) { // 401은 새로고침 시 자연스러운 로그인 상태 확인 실패
+    if (status && status !== 401) {
+      // 401은 새로고침 시 자연스러운 로그인 상태 확인 실패
       const msg = error.response?.data?.message || messages.contactAdmin;
       alert("[서버 오류] : " + msg);
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default common;

@@ -5,7 +5,7 @@ import com.simplecoding.simpledmsreactlogin.auth.dto.MypageDto;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+
 
 @Log4j2
 @SpringBootTest
@@ -22,6 +22,7 @@ class MemberServiceTest {
         memberDto.setPassword("forbob");
         memberDto.setName("홍길동");
         memberDto.setCodeName("ROLE_ADMIN");
+        memberDto.setEno((long)7499);        // 참조키: 사원테이블에 있는 걸로 해주세요
 //		2) 실제 메소드실행
         memberService.save(memberDto);
 //		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)

@@ -29,7 +29,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new RuntimeException(commonUtil.getMessage("errors.not.found")));
 
         GrantedAuthority authority = new SimpleGrantedAuthority(member.getCodeName());
-
         Set<GrantedAuthority> authorities = new HashSet<>();
         authorities.add(authority);
 
